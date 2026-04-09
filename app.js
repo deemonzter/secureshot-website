@@ -394,6 +394,30 @@
         }, true);
     }
 
+    function initTouchFlipCards() {
+        var isTouchLike = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+        if (!isTouchLike) return;
+
+        var cards = document.querySelectorAll("[data-flip-card]");
+        if (!cards.length) return;
+
+        Array.prototype.forEach.call(cards, function (card) {
+            card.addEventListener("click", function () {
+                var next = !card.classList.contains("is-flipped");
+                card.classList.toggle("is-flipped", next);
+                card.setAttribute("aria-pressed", next ? "true" : "false");
+            });
+
+            card.addEventListener("keydown", function (e) {
+                if (e.key !== "Enter" && e.key !== " ") return;
+                e.preventDefault();
+                var next = !card.classList.contains("is-flipped");
+                card.classList.toggle("is-flipped", next);
+                card.setAttribute("aria-pressed", next ? "true" : "false");
+            });
+        });
+    }
+
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", boot);
     } else {
@@ -408,5 +432,6 @@
         initSectionSpy();
         initMobileNav();
         initFlowPanel();
+        initTouchFlipCards();
     }
 })();

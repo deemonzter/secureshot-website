@@ -1031,18 +1031,27 @@ body {
     }
 
     .flip-face {
-        position: static;
+        position: absolute;
+        inset: 0;
         transform: none !important;
-        backface-visibility: visible;
-        -webkit-backface-visibility: visible;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
     }
 
     .flip-front {
-        display: none;
+        display: flex;
     }
 
     .flip-back {
-        opacity: 1;
+        display: none;
+    }
+
+    .flip-card.is-flipped .flip-front {
+        display: none;
+    }
+
+    .flip-card.is-flipped .flip-back {
+        display: flex;
     }
 }
 
