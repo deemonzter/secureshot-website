@@ -8,7 +8,7 @@ Official website for SecureShot - Privacy Policy, Terms of Service, and landing 
 
 ```bash
 # Navigate to the website directory
-cd website
+cd SecureShotWebsite
 
 # Initialize git repository
 git init
@@ -133,7 +133,7 @@ git push
 ## File Structure
 
 ```
-website/
+SecureShotWebsite/
 ├── index.html       # Homepage
 ├── privacy.html     # Privacy Policy
 ├── terms.html       # Terms of Service

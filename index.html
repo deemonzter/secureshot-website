@@ -3,123 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SecureShot - Privacy-focused mobile app for encrypting and securing your photos, videos, and files with zero-knowledge architecture.">
-    <meta name="keywords" content="SecureShot, encrypted photos, secure storage, zero-knowledge, privacy app">
-    <title>SecureShot - Secure Your Memories</title>
+    <meta name="description" content="SecureShot — encrypted files, not locked galleries. Client-encrypted media as portable .sshot files with zero-knowledge architecture, per-file protection, and secure sharing.">
+    <meta name="keywords" content="SecureShot, encrypted photos, .sshot, zero-knowledge, client-side encryption, secure sharing, privacy">
+    <title>SecureShot — Encrypted Files, Not Locked Galleries</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="nav-container">
-                <div class="logo">
-                    <h1>🔒 SecureShot</h1>
-                </div>
-                <div class="nav-links">
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
-                </div>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-site-header>
+        <nav class="site-nav container-wide" aria-label="Primary">
+            <a class="logo" href="index.html">
+                <span class="logo-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="11" width="14" height="10" rx="2"></rect>
+                        <path d="M12 15v2M9 18h6M8 11V7a4 4 0 0 1 8 0v4"></path>
+                    </svg>
+                </span>
+                <span>SecureShot</span>
+            </a>
+
+            <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <ul class="nav-desktop" id="nav-panel" data-nav-panel>
+                <li><a href="#model" data-section-link>Security model</a></li>
+                <li><a href="#workflows" data-section-link>Workflows</a></li>
+                <li><a href="#crypto" data-section-link>Cryptography</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle color theme" title="Theme">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+                    </svg>
+                </button>
+                <a class="btn btn-primary" href="https://apps.apple.com" rel="noopener noreferrer" target="_blank"><span>Download for iOS</span></a>
             </div>
         </nav>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1 class="hero-title">Your Privacy is Our Architecture</h1>
-                <p class="hero-subtitle">SecureShot is a privacy-focused mobile app that encrypts your photos, videos, and files with military-grade security.</p>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary">Download on App Store</a>
+    <main id="main">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-media" aria-hidden="true">
+                <canvas class="hero-matrix-canvas" data-hero-matrix width="1200" height="800"></canvas>
+            </div>
+            <div class="hero-gradient"></div>
+
+            <div class="hero-inner container-wide">
+                <div class="hero-copy">
+                    <p class="eyebrow">Not a vault — security in every file</p>
+                    <h1 id="hero-title" class="hero-title">Encrypted files, <em>not locked galleries</em>.</h1>
+                    <p class="hero-lead">SecureShot turns photos and videos into portable <span class="sshot-badge">.sshot</span> files — encrypted on your device before upload, protected per file, and designed so the service only ever receives ciphertext.</p>
+                    <div class="hero-cta">
+                        <a class="btn btn-primary" href="https://apps.apple.com" rel="noopener noreferrer" target="_blank">Download for iOS</a>
+                        <a class="btn btn-ghost" href="#model">See the security model</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-value">Per-file</span>
+                            <span class="stat-label">Protection lives in the file</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">Zero-knowledge</span>
+                            <span class="stat-label">By architecture, not slogan</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">Portable</span>
+                            <span class="stat-label">Send anywhere, stays encrypted</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-panel reveal">
+                    <div class="hero-panel-card">
+                        <p class="panel-label">How protection travels</p>
+                        <div class="panel-flow">
+                            <span class="flow-node flow-node--accent">Your device</span>
+                            <span class="flow-arrow" aria-hidden="true">→</span>
+                            <span class="flow-node">.sshot</span>
+                            <span class="flow-arrow" aria-hidden="true">→</span>
+                            <span class="flow-node">Any channel</span>
+                        </div>
+                        <p class="panel-foot">Encryption happens before upload. Sharing transfers access without passing passwords. The service handles sync and delivery, not plaintext access.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="features">
+        <section id="model" class="section surface-muted" aria-labelledby="model-title">
             <div class="container">
-                <h2>Zero-Knowledge Architecture</h2>
+                <header class="section-header reveal">
+                    <p class="section-kicker">A different security model</p>
+                    <h2 id="model-title" class="section-title">Per-file protection, not a single vault door</h2>
+                    <p class="section-lead">Most apps secure a gallery behind one unlock. SecureShot protects each file independently, so opening one item does not expose the rest of your library.</p>
+                </header>
+                <div class="model-grid">
+                    <div class="model-item reveal">
+                        <strong>Not a vault</strong>
+                        <span>Each file is independently encrypted. Protection is defined by the .sshot file, not by a hidden folder or locked gallery.</span>
+                    </div>
+                    <div class="model-item reveal">
+                        <strong>Stays encrypted anywhere</strong>
+                        <span>Export, back up, or send files through email, cloud storage, or messaging apps — they remain protected outside SecureShot.</span>
+                    </div>
+                    <div class="model-item reveal">
+                        <strong>No password passing</strong>
+                        <span>Secure sharing transfers access without sending passphrases through chat or email.</span>
+                    </div>
+                    <div class="model-item reveal">
+                        <strong>Access with intent</strong>
+                        <span>Open only what you need. Pro features reduce repeated friction with biometrics, thumbnails, and Master Key workflows.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="workflows" class="section" aria-labelledby="workflows-title">
+            <div class="container">
+                <header class="section-header reveal">
+                    <p class="section-kicker">Built for real workflows</p>
+                    <h2 id="workflows-title" class="section-title">Privacy that fits how people actually work</h2>
+                    <p class="section-lead">SecureShot is designed to be usable, not theatrical — serious cryptography, clear flows, and no fake vault behavior.</p>
+                </header>
                 <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🔐</div>
-                        <h3>End-to-End Encryption</h3>
-                        <p>Your files are encrypted on your device before upload. We never have access to your content or passwords.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">☁️</div>
-                        <h3>Secure Cloud Sync</h3>
-                        <p>Sync your encrypted files across devices. Everything stays encrypted, even in the cloud.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔒</div>
-                        <h3>Password Protected</h3>
-                        <p>Each file can have its own password. Lost passwords mean even we can't access your files.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📱</div>
-                        <h3>Simple & Beautiful</h3>
-                        <p>Security doesn't have to be complicated. Intuitive design meets powerful encryption.</p>
+                    <article class="feature-card reveal">
+                        <p class="feature-num">01</p>
+                        <h3>Import directly</h3>
+                        <p>Bring photos and videos into SecureShot and encrypt them on device instead of saving sensitive media to your gallery first.</p>
+                    </article>
+                    <article class="feature-card reveal">
+                        <p class="feature-num">02</p>
+                        <h3>Unlock only what you need</h3>
+                        <p>Decrypt one file at a time. Other files stay protected, so your entire library never appears just because you opened one item.</p>
+                    </article>
+                    <article class="feature-card reveal">
+                        <p class="feature-num">03</p>
+                        <h3>Export portable files</h3>
+                        <p>Encrypted .sshot files are self-contained and portable. Store them anywhere and reopen them with SecureShot when needed.</p>
+                    </article>
+                    <article class="feature-card reveal">
+                        <p class="feature-num">04</p>
+                        <h3>Share without passwords</h3>
+                        <p>SecureShot Pro adds passwordless sharing flows so recipients can receive protected files without passphrase juggling.</p>
+                    </article>
+                    <article class="feature-card reveal">
+                        <p class="feature-num">05</p>
+                        <h3>Unlock once, move faster</h3>
+                        <p>Master Key in Pro removes repeated password entry, while biometrics keep access fast and intentional.</p>
+                    </article>
+                    <article class="feature-card reveal">
+                        <p class="feature-num">06</p>
+                        <h3>Preview with control</h3>
+                        <p>Choose encrypted, blurred, or visible thumbnail states so recognition stays convenient without turning your library into an exposed gallery.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="crypto" class="section surface-muted" aria-labelledby="crypto-title">
+            <div class="container">
+                <header class="section-header reveal">
+                    <p class="section-kicker">Technical foundation</p>
+                    <h2 id="crypto-title" class="section-title">Modern cryptography, transparent guarantees</h2>
+                    <p class="section-lead">SecureShot uses industry-standard cryptography to protect content on device and move access safely between users — without turning the product into a jargon exercise.</p>
+                </header>
+                <div class="reveal">
+                    <p class="section-lead" style="max-width: 760px; margin-bottom: 0;">Payloads use <strong style="color: var(--text-emphasis);">XChaCha20-Poly1305</strong>. Passphrase and key derivation use <strong style="color: var(--text-emphasis);">Argon2id</strong>. Secure sharing uses <strong style="color: var(--text-emphasis);">Curve25519</strong> with HKDF to re-wrap per-file keys — without re-encrypting the media payload.</p>
+                    <div class="tech-row">
+                        <span class="tech-chip"><span>AEAD</span> XChaCha20-Poly1305</span>
+                        <span class="tech-chip"><span>KDF</span> Argon2id</span>
+                        <span class="tech-chip"><span>KX</span> Curve25519 + HKDF</span>
+                        <span class="tech-chip"><span>Format</span> .sshot</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="about">
+        <section class="section" aria-labelledby="privacy-title">
             <div class="container">
-                <h2>About SecureShot</h2>
-                <p>SecureShot is developed with a single mission: to give you complete control over your digital privacy. Unlike other storage apps, we use a zero-knowledge architecture, which means:</p>
-                <ul>
-                    <li>✓ We cannot see your files</li>
-                    <li>✓ We cannot access your passwords</li>
-                    <li>✓ We cannot decrypt your content</li>
-                    <li>✓ Even under legal pressure, we have nothing to give</li>
-                </ul>
-                <p>Your privacy isn't just a policy—it's built into the core of how SecureShot works.</p>
+                <header class="section-header reveal">
+                    <p class="section-kicker">Privacy stance</p>
+                    <h2 id="privacy-title" class="section-title">Private by design</h2>
+                    <p class="section-lead">SecureShot is built so the operator does not need plaintext access to your protected files.</p>
+                </header>
+                <div class="model-grid">
+                    <div class="model-item reveal">
+                        <strong>We never see your files</strong>
+                        <span>Encrypted content is protected on device before upload. The service stores ciphertext, not readable media.</span>
+                    </div>
+                    <div class="model-item reveal">
+                        <strong>We do not track your content</strong>
+                        <span>Operational analytics can measure app health and coarse usage patterns without logging plaintext, filenames, handles, or secrets.</span>
+                    </div>
+                    <div class="model-item reveal">
+                        <strong>No hidden data harvesting</strong>
+                        <span>SecureShot is not built around profiling your private content, scraping your media, or learning what your files are about.</span>
+                    </div>
+                    <div class="model-item reveal">
+                        <strong>Your keys stay with you</strong>
+                        <span>Zero-knowledge here means the secrets required to decrypt protected files are not available to the service.</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="legal">
+        <section class="section" aria-labelledby="legal-title">
             <div class="container">
-                <h2>Legal Information</h2>
-                <div class="legal-links">
-                    <a href="privacy.html" class="legal-card">
+                <header class="section-header reveal">
+                    <p class="section-kicker">Legal & contact</p>
+                    <h2 id="legal-title" class="section-title">Clear policies, serious product</h2>
+                    <p class="section-lead">Privacy and terms are written to match the actual system: what the service can see, what it cannot, and what responsibility stays with the user.</p>
+                </header>
+                <div class="legal-grid">
+                    <a class="legal-card reveal" href="privacy.html">
                         <h3>Privacy Policy</h3>
-                        <p>Learn how we handle your data (spoiler: we can't even see it)</p>
+                        <p>How account data, diagnostics, and ciphertext metadata are handled — and what never leaves your device.</p>
                     </a>
-                    <a href="terms.html" class="legal-card">
+                    <a class="legal-card reveal" href="terms.html">
                         <h3>Terms of Service</h3>
-                        <p>Understand your rights and responsibilities when using SecureShot</p>
+                        <p>Your responsibilities, acceptable use, and how the service is provided.</p>
                     </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>SecureShot</h3>
-                    <p>Your privacy is our architecture.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="logo" href="index.html">
+                        <span class="logo-mark" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="5" y="11" width="14" height="10" rx="2"></rect>
+                                <path d="M12 15v2M9 18h6M8 11V7a4 4 0 0 1 8 0v4"></path>
+                            </svg>
+                        </span>
+                        <span>SecureShot</span>
+                    </a>
+                    <p>Client-encrypted media as portable .sshot files — security that moves with the file, not a gimmick vault.</p>
                 </div>
-                <div class="footer-section">
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#workflows">Workflows</a></li>
+                        <li><a href="#crypto">Cryptography</a></li>
+                        <li><a href="https://apps.apple.com" rel="noopener noreferrer" target="_blank">App Store</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
                     <h4>Legal</h4>
                     <ul>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="terms.html">Terms of Service</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
+                <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
-                        <li>Support: <a href="mailto:support@secureshotapp.com">support@secureshotapp.com</a></li>
-                        <li>Privacy: <a href="mailto:privacy@secureshotapp.com">privacy@secureshotapp.com</a></li>
+                        <li><a href="mailto:support@secureshotapp.com">support@secureshotapp.com</a></li>
+                        <li><a href="mailto:privacy@secureshotapp.com">privacy@secureshotapp.com</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Joseph Daryl Locsin. All rights reserved.</p>
+                <p>&copy; 2026 Joseph Daryl Locsin. All rights reserved.</p>
             </div>
         </div>
     </footer>
 </body>
 </html>
-
