@@ -344,6 +344,13 @@ body {
     box-shadow: 0 8px 28px rgba(232, 184, 74, 0.35);
 }
 
+.appstore-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    flex: 0 0 auto;
+}
+
 .btn-ghost {
     background: transparent;
     color: var(--text-primary);
@@ -1442,6 +1449,11 @@ body {
     .nav-actions .btn-primary {
         padding: 0 var(--space-lg);
         min-width: 48px;
+    }
+
+    .nav-actions .btn-primary .appstore-icon {
+        width: 18px;
+        height: 18px;
     }
 }
 
