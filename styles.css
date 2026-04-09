@@ -596,19 +596,27 @@ body {
 .panel-flow {
     display: flex;
     align-items: center;
-    gap: var(--space-md);
-    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-xs);
+    flex-wrap: nowrap;
     margin-bottom: var(--space-xl);
+    width: 100%;
 }
 
 .flow-node {
-    padding: var(--space-sm) var(--space-lg);
-    border-radius: var(--radius-control);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-compact);
     background: var(--bg-surface);
     border: 1px solid var(--stroke-hairline);
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
     color: var(--text-primary);
+    white-space: nowrap;
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
 }
 
 .flow-node--interactive {
@@ -646,8 +654,9 @@ body {
 
 .flow-arrow {
     color: var(--text-muted);
-    font-size: 1.25rem;
+    font-size: 0.95rem;
     line-height: 1;
+    flex: 0 0 auto;
 }
 
 .panel-foot {
@@ -692,6 +701,22 @@ body {
 
     .flow-copy.is-active {
         display: block;
+    }
+}
+
+@media (max-width: 520px) {
+    .panel-flow {
+        gap: 4px;
+    }
+
+    .flow-node {
+        padding: 5px 6px;
+        font-size: 0.68rem;
+        border-radius: 7px;
+    }
+
+    .flow-arrow {
+        font-size: 0.78rem;
     }
 }
 
