@@ -418,6 +418,18 @@
         });
     }
 
+    function initSafariCardFallback() {
+        var ua = navigator.userAgent || "";
+        var vendor = navigator.vendor || "";
+        var isSafari =
+            /Safari/i.test(ua) &&
+            /Apple/i.test(vendor) &&
+            !/CriOS|FxiOS|EdgiOS|OPiOS|Chrome|Chromium/i.test(ua);
+
+        if (!isSafari) return;
+        document.documentElement.classList.add("safari-simple-cards");
+    }
+
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", boot);
     } else {
@@ -433,5 +445,6 @@
         initMobileNav();
         initFlowPanel();
         initTouchFlipCards();
+        initSafariCardFallback();
     }
 })();

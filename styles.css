@@ -1055,6 +1055,26 @@ body {
     }
 }
 
+/* Safari fallback: keep cards static on back face */
+.safari-simple-cards .flip-card .flip-card-inner {
+    transform: none !important;
+}
+
+.safari-simple-cards .flip-face {
+    position: static;
+    transform: none !important;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+}
+
+.safari-simple-cards .flip-front {
+    display: none !important;
+}
+
+.safari-simple-cards .flip-back {
+    display: flex !important;
+}
+
 /* Crypto chips */
 .tech-row {
     display: flex;
