@@ -85,14 +85,18 @@
                 <div class="hero-panel reveal">
                     <div class="hero-panel-card">
                         <p class="panel-label">How protection travels</p>
-                        <div class="panel-flow">
-                            <span class="flow-node flow-node--accent">Your device</span>
+                        <div class="panel-flow" data-flow-panel>
+                            <button type="button" class="flow-node flow-node--interactive flow-node--accent is-active" data-flow-key="device">Your device</button>
                             <span class="flow-arrow" aria-hidden="true">→</span>
-                            <span class="flow-node">.sshot</span>
+                            <button type="button" class="flow-node flow-node--interactive" data-flow-key="file">.sshot</button>
                             <span class="flow-arrow" aria-hidden="true">→</span>
-                            <span class="flow-node">Any channel</span>
+                            <button type="button" class="flow-node flow-node--interactive" data-flow-key="channel">Any channel</button>
                         </div>
-                        <p class="panel-foot">Encryption happens before upload. Sharing transfers access without passing passwords. The service handles sync and delivery, not plaintext access.</p>
+                        <div class="panel-foot" data-flow-copy-wrap>
+                            <p class="flow-copy is-active" data-flow-copy="device">Encryption happens before upload. Sharing transfers access without passing passwords. The service handles sync and delivery, not plaintext access.</p>
+                            <p class="flow-copy" data-flow-copy="file"><code>.sshot</code> is the portable encrypted object. Protection stays attached to the file itself, not to a locked gallery view.</p>
+                            <p class="flow-copy" data-flow-copy="channel">Any cloud, chat, or email channel can carry the file. What moves is encrypted payload, not exposed plaintext.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -106,21 +110,29 @@
                     <p class="section-lead">Most apps secure a gallery behind one unlock. SecureShot protects each file independently, so opening one item does not expose the rest of your library.</p>
                 </header>
                 <div class="model-grid">
-                    <div class="model-item reveal">
-                        <strong>Not a vault</strong>
-                        <span>Each file is independently encrypted. Protection is defined by the .sshot file, not by a hidden folder or locked gallery.</span>
+                    <div class="model-item reveal flip-card" data-flip-card role="button" tabindex="0" aria-pressed="false">
+                        <div class="flip-card-inner">
+                            <div class="flip-face flip-front"><span class="card-front-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 3v6c0 5-3.5 9-7 11-3.5-2-7-6-7-11V5l7-3z"/><rect x="9" y="10" width="6" height="5" rx="1"/><path d="M10.5 10V8.8a1.5 1.5 0 1 1 3 0V10"/></svg></span><strong>Not a vault</strong></div>
+                            <div class="flip-face flip-back"><strong>Not a vault</strong><span>Each file is independently encrypted. Protection is defined by the .sshot file, not by a hidden folder or locked gallery.</span></div>
+                        </div>
                     </div>
-                    <div class="model-item reveal">
-                        <strong>Stays encrypted anywhere</strong>
-                        <span>Export, back up, or send files through email, cloud storage, or messaging apps — they remain protected outside SecureShot.</span>
+                    <div class="model-item reveal flip-card" data-flip-card role="button" tabindex="0" aria-pressed="false">
+                        <div class="flip-card-inner">
+                            <div class="flip-face flip-front"><span class="card-front-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18a4 4 0 0 1 0-8 5 5 0 0 1 9.7-1.4A4 4 0 1 1 18 18H8z"/><rect x="10" y="12" width="4" height="4" rx="1"/><path d="M11 12v-1a1 1 0 1 1 2 0v1"/></svg></span><strong>Stays encrypted anywhere</strong></div>
+                            <div class="flip-face flip-back"><strong>Stays encrypted anywhere</strong><span>Export, back up, or send files through email, cloud storage, or messaging apps — they remain protected outside SecureShot.</span></div>
+                        </div>
                     </div>
-                    <div class="model-item reveal">
-                        <strong>No password passing</strong>
-                        <span>Secure sharing transfers access without sending passphrases through chat or email.</span>
+                    <div class="model-item reveal flip-card" data-flip-card role="button" tabindex="0" aria-pressed="false">
+                        <div class="flip-card-inner">
+                            <div class="flip-face flip-front"><span class="card-front-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="3"/><path d="M11 12h10M17 10v4M20 10v4"/><path d="M4 4l16 16"/></svg></span><strong>No password passing</strong></div>
+                            <div class="flip-face flip-back"><strong>No password passing</strong><span>Secure sharing transfers access without sending passphrases through chat or email.</span></div>
+                        </div>
                     </div>
-                    <div class="model-item reveal">
-                        <strong>Access with intent</strong>
-                        <span>Open only what you need. Pro features reduce repeated friction with biometrics, thumbnails, and Master Key workflows.</span>
+                    <div class="model-item reveal flip-card" data-flip-card role="button" tabindex="0" aria-pressed="false">
+                        <div class="flip-card-inner">
+                            <div class="flip-face flip-front"><span class="card-front-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 0-4 4v3a4 4 0 0 0 8 0V7a4 4 0 0 0-4-4z"/><path d="M5 12v1a7 7 0 0 0 14 0v-1"/><path d="M12 20v1"/></svg></span><strong>Access with intent</strong></div>
+                            <div class="flip-face flip-back"><strong>Access with intent</strong><span>Open only what you need. Pro features reduce repeated friction with biometrics, thumbnails, and Master Key workflows.</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -134,35 +146,41 @@
                     <p class="section-lead">SecureShot is designed to be usable, not theatrical — serious cryptography, clear flows, and no fake vault behavior.</p>
                 </header>
                 <div class="feature-grid">
-                    <article class="feature-card reveal">
-                        <p class="feature-num">01</p>
-                        <h3>Import directly</h3>
-                        <p>Bring photos and videos into SecureShot and encrypt them on device instead of saving sensitive media to your gallery first.</p>
+                    <article class="feature-card reveal flip-card" data-flip-card role="button" tabindex="0" aria-pressed="false">
+                        <div class="flip-card-inner">
+                            <div class="flip-face flip-front"><span class="card-front-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 11l4 4 4-4"/><rect x="4" y="16" width="16" height="5" rx="2"/></svg></span><div class="front-title-row"><span class="front-num">01</span><h3>Import directly</h3></div></div>
+                            <div class="flip-face flip-back"><p class="feature-num">01</p><h3>Import directly</h3><p>Bring photos and videos into SecureShot and encrypt them on device instead of saving sensitive media to your gallery first.</p></div>
+                        </div>
                     </article>
-                    <article class="feature-card reveal">
-                        <p class="feature-num">02</p>
-                        <h3>Unlock only what you need</h3>
-                        <p>Decrypt one file at a time. Other files stay protected, so your entire library never appears just because you opened one item.</p>
+                    <article class="feature-card reveal flip-card" data-flip-card role="button" tabindex="0" aria-pressed="false">
+                        <div class="flip-card-inner">
+                            <div class="flip-face flip-front"><span class="card-front-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="11" width="12" height="9" rx="2"/><path d="M9 11V8a3 3 0 1 1 6 0v3"/><path d="M12 14v3"/></svg></span><div class="front-title-row"><span class="front-num">02</span><h3>Unlock only what you need</h3></div></div>
+                            <div class="flip-face flip-back"><p class="feature-num">02</p><h3>Unlock only what you need</h3><p>Decrypt one file at a time. Other files stay protected, so your entire library never appears just because you opened one item.</p></div>
+                        </div>
                     </article>
-                    <article class="feature-card reveal">
-                        <p class="feature-num">03</p>
-                        <h3>Export portable files</h3>
-                        <p>Encrypted .sshot files are self-contained and portable. Store them anywhere and reopen them with SecureShot when needed.</p>
+                    <article class="feature-card reveal flip-card" data-flip-card role="button" tabindex="0" aria-pressed="false">
+                        <div class="flip-card-inner">
+                            <div class="flip-face flip-front"><span class="card-front-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V9"/><path d="M16 13l-4-4-4 4"/><rect x="4" y="3" width="16" height="5" rx="2"/></svg></span><div class="front-title-row"><span class="front-num">03</span><h3>Export portable files</h3></div></div>
+                            <div class="flip-face flip-back"><p class="feature-num">03</p><h3>Export portable files</h3><p>Encrypted .sshot files are self-contained and portable. Store them anywhere and reopen them with SecureShot when needed.</p></div>
+                        </div>
                     </article>
-                    <article class="feature-card reveal">
-                        <p class="feature-num">04</p>
-                        <h3>Share without passwords</h3>
-                        <p>SecureShot Pro adds passwordless sharing flows so recipients can receive protected files without passphrase juggling.</p>
+                    <article class="feature-card reveal flip-card" data-flip-card role="button" tabindex="0" aria-pressed="false">
+                        <div class="flip-card-inner">
+                            <div class="flip-face flip-front"><span class="card-front-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="M8 11l7.7-4.2M8 13l7.7 4.2"/></svg></span><div class="front-title-row"><span class="front-num">04</span><h3>Share without passwords</h3></div></div>
+                            <div class="flip-face flip-back"><p class="feature-num">04</p><h3>Share without passwords</h3><p>SecureShot Pro adds passwordless sharing flows so recipients can receive protected files without passphrase juggling.</p></div>
+                        </div>
                     </article>
-                    <article class="feature-card reveal">
-                        <p class="feature-num">05</p>
-                        <h3>Unlock once, move faster</h3>
-                        <p>Master Key in Pro removes repeated password entry, while biometrics keep access fast and intentional.</p>
+                    <article class="feature-card reveal flip-card" data-flip-card role="button" tabindex="0" aria-pressed="false">
+                        <div class="flip-card-inner">
+                            <div class="flip-face flip-front"><span class="card-front-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L5 14h6l-1 8 9-13h-6l0-7z"/></svg></span><div class="front-title-row"><span class="front-num">05</span><h3>Unlock once, move faster</h3></div></div>
+                            <div class="flip-face flip-back"><p class="feature-num">05</p><h3>Unlock once, move faster</h3><p>Master Key in Pro removes repeated password entry, while biometrics keep access fast and intentional.</p></div>
+                        </div>
                     </article>
-                    <article class="feature-card reveal">
-                        <p class="feature-num">06</p>
-                        <h3>Preview with control</h3>
-                        <p>Choose encrypted, blurred, or visible thumbnail states so recognition stays convenient without turning your library into an exposed gallery.</p>
+                    <article class="feature-card reveal flip-card" data-flip-card role="button" tabindex="0" aria-pressed="false">
+                        <div class="flip-card-inner">
+                            <div class="flip-face flip-front"><span class="card-front-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.5"/></svg></span><div class="front-title-row"><span class="front-num">06</span><h3>Preview with control</h3></div></div>
+                            <div class="flip-face flip-back"><p class="feature-num">06</p><h3>Preview with control</h3><p>Choose encrypted, blurred, or visible thumbnail states so recognition stays convenient without turning your library into an exposed gallery.</p></div>
+                        </div>
                     </article>
                 </div>
             </div>
@@ -176,11 +194,11 @@
                     <p class="section-lead">SecureShot uses industry-standard cryptography to protect content on device and move access safely between users — without turning the product into a jargon exercise.</p>
                 </header>
                 <div class="reveal">
-                    <p class="section-lead" style="max-width: 760px; margin-bottom: 0;">Payloads use <strong style="color: var(--text-emphasis);">XChaCha20-Poly1305</strong>. Passphrase and key derivation use <strong style="color: var(--text-emphasis);">Argon2id</strong>. Secure sharing uses <strong style="color: var(--text-emphasis);">Curve25519</strong> with HKDF to re-wrap per-file keys — without re-encrypting the media payload.</p>
+                    <p class="section-lead" style="max-width: 760px; margin-bottom: 0;">Payloads use <strong style="color: var(--text-emphasis);">XChaCha20-Poly1305</strong>.<br>Passphrase and key derivation use <strong style="color: var(--text-emphasis);">Argon2id</strong>.<br>Secure sharing uses <strong style="color: var(--text-emphasis);">Curve25519</strong>.</p>
                     <div class="tech-row">
                         <span class="tech-chip"><span>AEAD</span> XChaCha20-Poly1305</span>
                         <span class="tech-chip"><span>KDF</span> Argon2id</span>
-                        <span class="tech-chip"><span>KX</span> Curve25519 + HKDF</span>
+                        <span class="tech-chip"><span>KX</span> Curve25519</span>
                         <span class="tech-chip"><span>Format</span> .sshot</span>
                     </div>
                 </div>
@@ -194,22 +212,22 @@
                     <h2 id="privacy-title" class="section-title">Private by design</h2>
                     <p class="section-lead">SecureShot is built so the operator does not need plaintext access to your protected files.</p>
                 </header>
-                <div class="model-grid">
-                    <div class="model-item reveal">
+                <div class="legal-grid privacy-grid">
+                    <div class="privacy-card reveal">
                         <strong>We never see your files</strong>
-                        <span>Encrypted content is protected on device before upload. The service stores ciphertext, not readable media.</span>
+                        <p>Encrypted content is protected on device before upload. The service stores ciphertext, not readable media.</p>
                     </div>
-                    <div class="model-item reveal">
+                    <div class="privacy-card reveal">
                         <strong>We do not track your content</strong>
-                        <span>Operational analytics can measure app health and coarse usage patterns without logging plaintext, filenames, handles, or secrets.</span>
+                        <p>Operational analytics can measure app health and coarse usage patterns without logging plaintext, filenames, handles, or secrets.</p>
                     </div>
-                    <div class="model-item reveal">
+                    <div class="privacy-card reveal">
                         <strong>No hidden data harvesting</strong>
-                        <span>SecureShot is not built around profiling your private content, scraping your media, or learning what your files are about.</span>
+                        <p>SecureShot is not built around profiling your private content, scraping your media, or learning what your files are about.</p>
                     </div>
-                    <div class="model-item reveal">
+                    <div class="privacy-card reveal">
                         <strong>Your keys stay with you</strong>
-                        <span>Zero-knowledge here means the secrets required to decrypt protected files are not available to the service.</span>
+                        <p>Zero-knowledge here means the secrets required to decrypt protected files are not available to the service.</p>
                     </div>
                 </div>
             </div>
@@ -222,7 +240,7 @@
                     <h2 id="legal-title" class="section-title">Clear policies, serious product</h2>
                     <p class="section-lead">Privacy and terms are written to match the actual system: what the service can see, what it cannot, and what responsibility stays with the user.</p>
                 </header>
-                <div class="legal-grid">
+                <div class="legal-grid privacy-grid">
                     <a class="legal-card reveal" href="privacy.html">
                         <h3>Privacy Policy</h3>
                         <p>How account data, diagnostics, and ciphertext metadata are handled — and what never leaves your device.</p>

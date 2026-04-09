@@ -356,6 +356,44 @@
         });
     }
 
+    function initFlowPanel() {
+        var panel = document.querySelector("[data-flow-panel]");
+        var nodes = document.querySelectorAll("[data-flow-key]");
+        var copies = document.querySelectorAll("[data-flow-copy]");
+        if (!panel || !nodes.length || !copies.length) return;
+
+        function activate(key) {
+            Array.prototype.forEach.call(nodes, function (n) {
+                n.classList.toggle("is-active", n.getAttribute("data-flow-key") === key);
+            });
+            Array.prototype.forEach.call(copies, function (c) {
+                c.classList.toggle("is-active", c.getAttribute("data-flow-copy") === key);
+            });
+        }
+
+        function reset() {
+            activate("device");
+        }
+
+        Array.prototype.forEach.call(nodes, function (n) {
+            var key = n.getAttribute("data-flow-key");
+            n.addEventListener("mouseenter", function () {
+                activate(key);
+            });
+            n.addEventListener("focus", function () {
+                activate(key);
+            });
+            n.addEventListener("click", function () {
+                activate(key);
+            });
+        });
+
+        panel.addEventListener("mouseleave", reset);
+        panel.addEventListener("blur", function (e) {
+            if (!panel.contains(e.relatedTarget)) reset();
+        }, true);
+    }
+
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", boot);
     } else {
@@ -369,5 +407,6 @@
         initReveal();
         initSectionSpy();
         initMobileNav();
+        initFlowPanel();
     }
 })();
