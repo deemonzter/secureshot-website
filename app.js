@@ -159,7 +159,7 @@
 
             var waveA = t * 0.00035;
             var waveB = t * 0.00022;
-            var sweepBand = Math.max(70, h * 0.12);
+            var sweepBand = Math.max(140, h * 0.24);
             var sweepY = reduced ? h * 0.42 : (t * 0.085) % (h + sweepBand * 2) - sweepBand;
 
             ctx.strokeStyle = pal.grid;
