@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SecureShot Privacy Policy - Learn how we protect your data with zero-knowledge architecture.">
+    <meta name="description" content="SecureShot Privacy Policy — client-side encryption: decryption secrets stay on your device; we describe what account and file metadata we store for sync (e.g. filenames, IDs) alongside ciphertext.">
     <title>Privacy Policy - SecureShot</title>
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
@@ -31,7 +31,7 @@
 
             <ul class="nav-desktop" id="legal-nav-panel" data-nav-panel>
                 <li><a href="index.html#model">Security model</a></li>
-                <li><a href="index.html#features">Product</a></li>
+                <li><a href="index.html#workflows">Workflows</a></li>
                 <li><a href="index.html#crypto">Cryptography</a></li>
                 <li><a href="privacy.html" class="is-active">Privacy</a></li>
                 <li><a href="terms.html">Terms</a></li>
@@ -61,7 +61,7 @@
                 
                 <p class="document-meta">
                     <strong>Effective Date:</strong> November 9, 2025<br>
-                    <strong>Last Updated:</strong> November 9, 2025
+                    <strong>Last Updated:</strong> April 11, 2026
                 </p>
 
                 <section>
@@ -71,7 +71,8 @@
 
                 <section>
                     <h2>Our Commitment to Privacy</h2>
-                    <p>SecureShot is designed with a <strong>zero-knowledge architecture</strong>. This means that we cannot access, read, or decrypt any of the files you secure using the App. Your privacy is not just a policy — it's built into the core design of our system.</p>
+                    <p>SecureShot encrypts file <strong>contents</strong> on your device before upload. <strong>Zero-knowledge of decryption secrets</strong> means passphrases, master-key material, and other secrets required to decrypt your files are <strong>not</strong> available to us — we cannot turn ciphertext into your photos, videos, or documents without those secrets.</p>
+                    <p>That is <strong>not</strong> the same as “we learn nothing.” To operate sync, accounts, and your library, we process <strong>account data</strong> and <strong>file metadata</strong> (see below), and we store <strong>ciphertext</strong> in cloud storage. We do not use your file contents for advertising or profiling.</p>
                 </section>
 
                 <section>
@@ -86,14 +87,16 @@
                     </ul>
 
                     <h3>2. File Metadata</h3>
-                    <p>We store minimal metadata about your encrypted files:</p>
+                    <p>We store metadata about your encrypted files so the App can list, sync, and organize them. This is separate from file <em>contents</em> (which we do not receive in plaintext):</p>
                     <ul>
                         <li>File name (as you choose to name it)</li>
-                        <li>File size</li>
-                        <li>Upload timestamp</li>
-                        <li>File type identifier</li>
+                        <li>File and record identifiers</li>
+                        <li>Original and encrypted sizes</li>
+                        <li>Timestamps (e.g. creation, upload)</li>
+                        <li>File type identifier (e.g. image, video)</li>
+                        <li>Information needed for sharing or account features, as applicable</li>
                     </ul>
-                    <p><strong>Important:</strong> We do NOT have access to the contents of your encrypted files. All files are encrypted on your device before upload.</p>
+                    <p><strong>Important:</strong> File <strong>contents</strong> are encrypted on your device before upload. We do not have usable decryption secrets; we cannot decrypt your ciphertext into viewable media without your keys or passphrase on your device.</p>
 
                     <h3>3. Technical Information</h3>
                     <p>We automatically collect certain technical information:</p>
@@ -105,22 +108,18 @@
                     </ul>
 
                     <h3>4. Usage Analytics</h3>
-                    <p>We collect anonymized usage data to improve the App:</p>
-                    <ul>
-                        <li>Feature usage frequency</li>
-                        <li>App session duration</li>
-                        <li>Performance metrics</li>
-                    </ul>
+                    <p>We may collect aggregated or anonymized usage data to improve the App (for example feature usage, session duration, performance). Analytics are not intended to capture plaintext file contents or passphrases. Certain product events may include coarse technical fields; they are separate from the full file metadata stored for sync in your account. You may opt out where the App or platform provides that control.</p>
                 </section>
 
                 <section>
-                    <h2>Information We Do NOT Collect</h2>
+                    <h2>Information We Do NOT Collect (or Hold in Usable Form)</h2>
                     <ul>
-                        <li><strong>Your encryption passwords</strong> — These never leave your device</li>
-                        <li><strong>Decrypted file contents</strong> — We never see your actual photos, videos, or files</li>
-                        <li><strong>Browsing history or location data</strong></li>
-                        <li><strong>Contacts or other personal device data</strong></li>
-                        <li><strong>Biometric data</strong></li>
+                        <li><strong>Your file encryption passphrases</strong> — Not sent to our servers in a form we can use to decrypt your files</li>
+                        <li><strong>Your master decryption key material</strong> — Remains under your control (e.g. device keychain / secure storage), not available to us as a usable server-side secret</li>
+                        <li><strong>Decrypted file contents</strong> — We do not receive or store your photos, videos, or notes as plaintext in our cloud for normal operation</li>
+                        <li><strong>Browsing history or location data</strong> (not part of core SecureShot design)</li>
+                        <li><strong>Contacts</strong> (not required for core features)</li>
+                        <li><strong>Biometric templates</strong> — Biometrics unlock local secure storage; we do not receive biometric data</li>
                     </ul>
                 </section>
 
@@ -141,7 +140,7 @@
                     <h2>Data Storage and Security</h2>
                     
                     <h3>Cloud Storage</h3>
-                    <p>Your encrypted files are stored using secure cloud infrastructure (Firebase Storage). These files remain encrypted at all times and cannot be decrypted by us or any third party without your password.</p>
+                    <p>Your encrypted files are stored using secure cloud infrastructure (e.g. Firebase Storage). Blob contents are ciphertext. We do not possess your passphrases or master-key material on the server, so we cannot decrypt those blobs into plaintext media for routine operation.</p>
 
                     <h3>Local Storage</h3>
                     <p>The App stores encrypted files locally in your device's secure sandbox. These files are removed only when you delete the app or manually clear the cache.</p>
@@ -165,7 +164,7 @@
                         <li><strong>Legal requirements</strong> — When required by law, subpoena, or court order</li>
                         <li><strong>Service providers</strong> — With trusted third parties who help us operate the App (e.g., cloud hosting), under strict confidentiality agreements</li>
                     </ul>
-                    <p><strong>Note:</strong> Even under legal compulsion, we cannot provide access to your encrypted files without your password.</p>
+                    <p><strong>Note:</strong> Legal process may compel production of data we hold (for example account records or ciphertext). We do not hold your passphrases or usable master keys on the server; decryption of your file contents still requires your secrets on a device you control.</p>
                 </section>
 
                 <section>
@@ -224,7 +223,7 @@
 
                 <div class="document-footer">
                     <hr>
-                    <p><strong>SecureShot</strong> — Your privacy is our architecture, not just our policy.</p>
+                    <p><strong>SecureShot</strong> — Ciphertext and key custody you control; sync metadata where the product needs it.</p>
                 </div>
             </div>
         </article>

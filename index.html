@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SecureShot — encrypted files, not locked galleries. Client-encrypted media as portable .sshot files with zero-knowledge architecture, per-file protection, and secure sharing.">
-    <meta name="keywords" content="SecureShot, encrypted photos, .sshot, zero-knowledge, client-side encryption, secure sharing, privacy">
+    <meta name="description" content="SecureShot — encrypted files, not locked galleries. Portable .sshot files, client-side encryption, zero-knowledge of decryption secrets. Ciphertext and sync-safe listing data in the cloud; per-file protection and secure sharing.">
+    <meta name="keywords" content="SecureShot, encrypted photos, .sshot, zero-knowledge, client-side encryption, ciphertext, secure sharing, privacy">
     <title>SecureShot — Encrypted Files, Not Locked Galleries</title>
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
@@ -57,16 +57,20 @@
 
     <main id="main">
         <section class="hero" aria-labelledby="hero-title">
-            <div class="hero-media" aria-hidden="true">
-                <canvas class="hero-matrix-canvas" data-hero-matrix width="1200" height="800"></canvas>
+            <!-- 4 — glyph grid + wave + vignette (behind copy + visual) -->
+            <div class="hero-backdrop" aria-hidden="true">
+                <div class="hero-media">
+                    <canvas class="hero-matrix-canvas" data-hero-matrix width="1200" height="800"></canvas>
+                </div>
+                <div class="hero-gradient"></div>
             </div>
-            <div class="hero-gradient"></div>
 
             <div class="hero-inner container-wide">
+                <!-- 1 — headline, CTAs, three stat outlines -->
                 <div class="hero-copy">
                     <p class="eyebrow">Not a vault — security in every file</p>
                     <h1 id="hero-title" class="hero-title">Encrypted files, <em>not locked galleries</em>.</h1>
-                    <p class="hero-lead">SecureShot turns photos and videos into portable <span class="sshot-badge">.sshot</span> files — encrypted on your device before upload, protected per file, and designed so the service only ever receives ciphertext.</p>
+                    <p class="hero-lead">SecureShot turns photos and videos into portable <span class="sshot-badge">.sshot</span> files — encrypted on your device before upload, protected per file, and designed so the cloud holds ciphertext and sync-safe listing data, not plaintext media or decryption secrets.</p>
                     <div class="hero-cta">
                         <a class="btn btn-primary" href="https://apps.apple.com" rel="noopener noreferrer" target="_blank">Download for iOS</a>
                         <a class="btn btn-ghost" href="#model">See the security model</a>
@@ -87,20 +91,47 @@
                     </div>
                 </div>
 
-                <div class="hero-panel reveal">
-                    <div class="hero-panel-card">
-                        <p class="panel-label">How protection travels</p>
-                        <div class="panel-flow" data-flow-panel>
-                            <button type="button" class="flow-node flow-node--interactive flow-node--accent is-active" data-flow-key="device">Your device</button>
-                            <span class="flow-arrow" aria-hidden="true">→</span>
-                            <button type="button" class="flow-node flow-node--interactive" data-flow-key="file">.sshot</button>
-                            <span class="flow-arrow" aria-hidden="true">→</span>
-                            <button type="button" class="flow-node flow-node--interactive" data-flow-key="channel">Any channel</button>
+                <!-- 2 + 3 — device (sticky) with flow panel centered, bottom-aligned on top -->
+                <div class="hero-visual">
+                    <div class="hero-sticky">
+                        <div class="hero-device" aria-hidden="true">
+                            <div class="hero-device-clip">
+                                <img
+                                    class="hero-device-img hero-device-img--dark"
+                                    src="assets/sshot-iphone-dark.png"
+                                    width="390"
+                                    height="840"
+                                    alt=""
+                                    decoding="async"
+                                    fetchpriority="high"
+                                >
+                                <img
+                                    class="hero-device-img hero-device-img--light"
+                                    src="assets/sshot-iphone-light.png"
+                                    width="390"
+                                    height="840"
+                                    alt=""
+                                    decoding="async"
+                                    loading="lazy"
+                                >
+                            </div>
                         </div>
-                        <div class="panel-foot" data-flow-copy-wrap>
-                            <p class="flow-copy is-active" data-flow-copy="device">Encryption happens before upload. Sharing transfers access without passing passwords. The service handles sync and delivery, not plaintext access.</p>
-                            <p class="flow-copy" data-flow-copy="file"><code>.sshot</code> is the portable encrypted object. Protection stays attached to the file itself, not to a locked gallery view.</p>
-                            <p class="flow-copy" data-flow-copy="channel">Any cloud, chat, or email channel can carry the file. What moves is encrypted payload, not exposed plaintext.</p>
+                        <div class="hero-panel reveal">
+                            <div class="hero-panel-card">
+                                <p class="panel-label">Security that moves with you</p>
+                                <div class="panel-flow" data-flow-panel>
+                                    <button type="button" class="flow-node flow-node--interactive flow-node--accent is-active" data-flow-key="device">Your device</button>
+                                    <span class="flow-arrow" aria-hidden="true">→</span>
+                                    <button type="button" class="flow-node flow-node--interactive" data-flow-key="file">.sshot</button>
+                                    <span class="flow-arrow" aria-hidden="true">→</span>
+                                    <button type="button" class="flow-node flow-node--interactive" data-flow-key="channel">Any channel</button>
+                                </div>
+                                <div class="panel-foot" data-flow-copy-wrap>
+                                    <p class="flow-copy is-active" data-flow-copy="device">Encrypt on device first. Sharing does not send passphrases through chat. Sync moves ciphertext—not plaintext or your keys.</p>
+                                    <p class="flow-copy" data-flow-copy="file"><code>.sshot</code> is the portable object: protection travels with the file, not a locked gallery shell.</p>
+                                    <p class="flow-copy" data-flow-copy="channel">Cloud, chat, or AirDrop—the payload stays encrypted in transit.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -111,7 +142,7 @@
             <div class="container">
                 <header class="section-header reveal">
                     <p class="section-kicker">A different security model</p>
-                    <h2 id="model-title" class="section-title">Per-file protection, not a single vault door</h2>
+                    <h2 id="model-title" class="section-title">An armored briefcase, not a single vault door</h2>
                     <p class="section-lead">Most apps secure a gallery behind one unlock. SecureShot protects each file independently, so opening one item does not expose the rest of your library.</p>
                 </header>
                 <div class="model-grid">
@@ -215,24 +246,24 @@
                 <header class="section-header reveal">
                     <p class="section-kicker">Privacy stance</p>
                     <h2 id="privacy-title" class="section-title">Private by design</h2>
-                    <p class="section-lead">SecureShot is built so the operator does not need plaintext access to your protected files.</p>
+                    <p class="section-lead">The operator does not receive plaintext media or usable decryption secrets—see <a href="privacy.html">Privacy Policy</a> for what sync stores.</p>
                 </header>
                 <div class="legal-grid privacy-grid">
                     <div class="privacy-card reveal">
                         <strong>We never see your files</strong>
-                        <p>Encrypted content is protected on device before upload. The service stores ciphertext, not readable media.</p>
+                        <p>Content is encrypted on device; the cloud holds ciphertext, not readable photos or videos.</p>
                     </div>
                     <div class="privacy-card reveal">
-                        <strong>We do not track your content</strong>
-                        <p>Operational analytics can measure app health and coarse usage patterns without logging plaintext, filenames, handles, or secrets.</p>
+                        <strong>No plaintext analytics</strong>
+                        <p>Product metrics focus on health and usage—not reconstructing your library. Account fields for sync are spelled out in the <a href="privacy.html">Privacy Policy</a>.</p>
                     </div>
                     <div class="privacy-card reveal">
-                        <strong>No hidden data harvesting</strong>
-                        <p>SecureShot is not built around profiling your private content, scraping your media, or learning what your files are about.</p>
+                        <strong>No content profiling</strong>
+                        <p>SecureShot is not built to scrape your media or learn what your files contain.</p>
                     </div>
                     <div class="privacy-card reveal">
-                        <strong>Your keys stay with you</strong>
-                        <p>Zero-knowledge here means the secrets required to decrypt protected files are not available to the service.</p>
+                        <strong>Zero-knowledge of secrets</strong>
+                        <p>Passphrases and keys that decrypt your files are not available to the service—by architecture, matching the hero above.</p>
                     </div>
                 </div>
             </div>
@@ -243,12 +274,12 @@
                 <header class="section-header reveal">
                     <p class="section-kicker">Legal & contact</p>
                     <h2 id="legal-title" class="section-title">Clear policies, serious product</h2>
-                    <p class="section-lead">Privacy and terms are written to match the actual system: what the service can see, what it cannot, and what responsibility stays with the user.</p>
+                    <p class="section-lead">Policies match the product: ciphertext, sync metadata, and your responsibilities.</p>
                 </header>
                 <div class="legal-grid privacy-grid">
                     <a class="legal-card reveal" href="privacy.html">
                         <h3>Privacy Policy</h3>
-                        <p>How account data, diagnostics, and ciphertext metadata are handled — and what never leaves your device.</p>
+                        <p>What we store, what stays on your device, and how sync works.</p>
                     </a>
                     <a class="legal-card reveal" href="terms.html">
                         <h3>Terms of Service</h3>

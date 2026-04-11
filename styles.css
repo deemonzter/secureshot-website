@@ -373,14 +373,28 @@ body {
     cursor: pointer;
 }
 
-/* —— Hero —— */
+/* —— Hero ——
+   Layering: (4) glyph canvas + gradient → (1) left copy → (2) device + (3) panel on top
+*/
 .hero {
     position: relative;
     min-height: min(92vh, 900px);
     padding: calc(var(--header-h) + var(--space-hero)) 0 var(--space-hero);
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
     display: flex;
     align-items: center;
+    --hero-pad-lead: var(--space-xxl);
+    --hero-pad-trail: calc(var(--hero-pad-lead) * 2);
+}
+
+/* 4 — glyph wave + vignette (behind everything in the hero) */
+.hero-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
 }
 
 .hero-media {
@@ -425,17 +439,241 @@ body {
     }
 }
 
+/* Leading padding L, trailing 2L (right column aligns into the wider inset) */
+.hero .hero-inner.container-wide {
+    padding-left: var(--hero-pad-lead);
+    padding-right: var(--hero-pad-trail);
+}
+
 .hero-inner {
     position: relative;
     z-index: 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-hero);
-    align-items: center;
+    align-items: start;
+    min-width: 0;
+    width: 100%;
 }
 
+/* 1 — left: headline, CTAs, stats — sticky while hero scrolls */
 .hero-copy {
+    position: sticky;
+    top: calc(var(--header-h) + 16px);
+    align-self: start;
     max-width: 560px;
+    min-width: 0;
+    z-index: 1;
+}
+
+/* 2 + 3 — right: iPhone + panel stacked in one grid cell (panel above, centered, bottom-aligned) */
+.hero-visual {
+    position: relative;
+    z-index: 1;
+    justify-self: end;
+    width: 100%;
+    max-width: 560px;
+    min-width: 0;
+}
+
+.hero-sticky {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: end;
+    align-content: end;
+    width: 100%;
+    min-width: 0;
+}
+
+.hero-device {
+    grid-row: 1;
+    grid-column: 1;
+    z-index: 0;
+    display: none;
+    min-width: 0;
+    width: min(48vw, 460px);
+    max-width: 100%;
+    align-self: end;
+    justify-self: center;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Top half of art (hide bottom 50%); box matches 390×(840×0.5) */
+.hero-device-clip {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    aspect-ratio: 390 / 546;
+    overflow: hidden;
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.38));
+}
+
+/* Sit on bottom edge of .hero-device-clip; top crops when taller than frame */
+.hero-device-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    flex: 0 0 auto;
+    object-fit: contain;
+    object-position: bottom center;
+}
+
+/* Default shell is dark; pair with explicit theme + system preference (see app.js theme) */
+.hero-device-img--light {
+    display: none;
+}
+
+.hero-device-img--dark {
+    display: block;
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) .hero-device-img--dark {
+        display: none;
+    }
+
+    :root:not([data-theme]) .hero-device-img--light {
+        display: block;
+    }
+}
+
+[data-theme="light"] .hero-device-img--dark {
+    display: none;
+}
+
+[data-theme="light"] .hero-device-img--light {
+    display: block;
+}
+
+[data-theme="dark"] .hero-device-img--light {
+    display: none;
+}
+
+[data-theme="dark"] .hero-device-img--dark {
+    display: block;
+}
+
+[data-theme="light"] .hero-device-clip {
+    filter: drop-shadow(0 16px 36px rgba(44, 40, 37, 0.18));
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) .hero-device-clip {
+        filter: drop-shadow(0 16px 36px rgba(44, 40, 37, 0.18));
+    }
+}
+
+.hero-panel {
+    grid-row: 1;
+    grid-column: 1;
+    position: relative;
+    z-index: 2;
+    align-self: end;
+    justify-self: center;
+    width: 100%;
+    max-width: 480px;
+    margin: 0;
+}
+
+/* Wide desktop: show phone; sticky the whole right stack; glass card over device */
+@media (min-width: 1141px) {
+    .hero-sticky {
+        position: sticky;
+        top: calc(var(--header-h) + 16px);
+        min-height: clamp(380px, 52vh, 620px);
+        grid-template-rows: minmax(0, 1fr);
+    }
+
+    .hero-device {
+        display: block;
+    }
+
+    .hero-panel {
+        max-width: min(400px, 108%);
+        transform: translateY(clamp(-2rem, -14%, -0.75rem));
+    }
+
+    .hero-panel-card {
+        background: color-mix(in srgb, var(--bg-card-elevated) 92%, transparent);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+@media (max-width: 1140px) and (min-width: 901px) {
+    .hero-inner {
+        align-items: center;
+    }
+
+    .hero-sticky {
+        min-height: 0;
+        position: relative;
+        top: auto;
+    }
+
+    .hero-device {
+        display: none !important;
+    }
+
+    .hero-panel {
+        transform: none;
+        justify-self: end;
+        width: 100%;
+        max-width: 480px;
+    }
+
+    .hero-panel-card {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: var(--bg-card-elevated);
+    }
+}
+
+@media (max-width: 900px) {
+    .hero .hero-inner.container-wide {
+        padding-left: var(--space-xxl);
+        padding-right: var(--space-xxl);
+    }
+
+    .hero-copy {
+        position: static;
+    }
+
+    .hero-device {
+        display: none !important;
+    }
+
+    .hero-sticky {
+        min-height: 0;
+    }
+
+    .hero-visual {
+        justify-self: center;
+        max-width: 100%;
+    }
+
+    .hero-panel {
+        transform: none;
+        max-width: 480px;
+    }
+
+    .hero-panel-card {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: var(--bg-card-elevated);
+    }
 }
 
 .eyebrow {
@@ -558,13 +796,6 @@ body {
     margin-top: 2px;
 }
 
-.hero-panel {
-    position: relative;
-    justify-self: end;
-    width: 100%;
-    max-width: 480px;
-}
-
 .hero-panel-card {
     background: var(--bg-card-elevated);
     border: 1px solid var(--stroke-card);
@@ -666,20 +897,26 @@ body {
     flex: 0 0 auto;
 }
 
+/* Fixed height so switching flow steps does not reflow the hero panel */
 .panel-foot {
     position: relative;
-    min-height: 3.4em;
+    min-height: 5.25rem;
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    line-height: 1.55;
 }
 
 .flow-copy {
     margin: 0;
-    font-size: 0.875rem;
-    color: var(--text-tertiary);
-    line-height: 1.55;
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
     opacity: 0;
     transform: translateY(4px);
     position: absolute;
-    inset: 0;
+    left: 0;
+    right: 0;
+    top: 0;
     pointer-events: none;
     transition:
         opacity var(--transition-med),
@@ -689,7 +926,7 @@ body {
 .flow-copy.is-active {
     opacity: 1;
     transform: none;
-    position: relative;
+    z-index: 1;
 }
 
 .panel-foot code {
@@ -698,16 +935,25 @@ body {
 }
 
 @media (hover: none), (pointer: coarse) {
+    /* Same stacked layout as desktop so height does not jump on tap */
     .flow-copy {
-        position: relative;
-        opacity: 1;
-        transform: none;
-        display: none;
-        pointer-events: auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        display: block;
+        pointer-events: none;
     }
 
     .flow-copy.is-active {
-        display: block;
+        opacity: 1;
+        transform: none;
+        z-index: 1;
+    }
+
+    .flow-copy:not(.is-active) {
+        opacity: 0;
+        transform: translateY(4px);
     }
 }
 
@@ -725,12 +971,10 @@ body {
     .flow-arrow {
         font-size: 0.78rem;
     }
-}
 
-.panel-foot {
-    font-size: 0.875rem;
-    color: var(--text-tertiary);
-    line-height: 1.55;
+    .panel-foot {
+        min-height: 6rem;
+    }
 }
 
 /* —— Sections —— */

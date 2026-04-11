@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SecureShot Terms of Service - Understand your rights and responsibilities when using SecureShot.">
+    <meta name="description" content="SecureShot Terms of Service — rights and responsibilities; client-side encryption and zero-knowledge of decryption secrets; see Privacy Policy for metadata and sync.">
     <title>Terms of Service - SecureShot</title>
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
@@ -31,7 +31,7 @@
 
             <ul class="nav-desktop" id="legal-nav-panel-terms" data-nav-panel>
                 <li><a href="index.html#model">Security model</a></li>
-                <li><a href="index.html#features">Product</a></li>
+                <li><a href="index.html#workflows">Workflows</a></li>
                 <li><a href="index.html#crypto">Cryptography</a></li>
                 <li><a href="privacy.html">Privacy</a></li>
                 <li><a href="terms.html" class="is-active">Terms</a></li>
@@ -61,7 +61,7 @@
                 
                 <p class="document-meta">
                     <strong>Effective Date:</strong> November 9, 2025<br>
-                    <strong>Last Updated:</strong> November 9, 2025
+                    <strong>Last Updated:</strong> April 11, 2026
                 </p>
 
                 <section>
@@ -79,7 +79,7 @@
                         <li>Decrypt and view their files using passwords they create</li>
                         <li>Manage and organize encrypted content</li>
                     </ul>
-                    <p>The App uses a <strong>zero-knowledge architecture</strong>, meaning we cannot access, view, or decrypt your encrypted files.</p>
+                    <p>The App is built so that <strong>decryption secrets</strong> (passphrases and master-key material usable to decrypt your files) are <strong>not</strong> available to us on our servers. We may store <strong>ciphertext</strong> and <strong>coordination metadata</strong> (for example file names and IDs for sync) as described in the <a href="privacy.html">Privacy Policy</a>. We do not receive your file contents as plaintext in normal operation.</p>
                 </section>
 
                 <section>
@@ -95,7 +95,7 @@
                     </ul>
 
                     <h3>Password Management</h3>
-                    <p><strong>CRITICAL:</strong> You are solely responsible for remembering your file encryption passwords. Due to our zero-knowledge design:</p>
+                    <p><strong>CRITICAL:</strong> You are solely responsible for remembering your file encryption passwords. Because decryption secrets are not available to us:</p>
                     <ul>
                         <li>We cannot recover lost passwords</li>
                         <li>We cannot decrypt your files without your password</li>
@@ -134,12 +134,12 @@
 
                 <section>
                     <h2>Privacy and Data</h2>
-                    <p>Our collection and use of information is governed by our Privacy Policy, which is incorporated into these Terms by reference. Key points:</p>
+                    <p>Our collection and use of information is governed by our <a href="privacy.html">Privacy Policy</a>, which is incorporated into these Terms by reference. Key points:</p>
                     <ul>
-                        <li>We cannot access your encrypted file contents</li>
-                        <li>We collect minimal metadata to operate the service</li>
-                        <li>Your encryption passwords never leave your device</li>
-                        <li>We do not sell your data to third parties</li>
+                        <li>File <strong>contents</strong> are encrypted on device; we do not receive plaintext media for routine cloud storage</li>
+                        <li>We may store <strong>metadata</strong> (e.g. filenames, file IDs, sizes) and <strong>ciphertext</strong> as needed for sync and features</li>
+                        <li>Passphrases and usable master-key material for decryption are not held by us as server-side secrets</li>
+                        <li>We do not sell your personal information to third parties</li>
                     </ul>
                 </section>
 
