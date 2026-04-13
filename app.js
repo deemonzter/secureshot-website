@@ -292,7 +292,7 @@
     function initSectionSpy() {
         var links = document.querySelectorAll("[data-section-link]");
         var sections = Array.prototype.map
-            .call(["model", "features", "crypto"], function (id) {
+            .call(["model", "workflows", "crypto"], function (id) {
                 return document.getElementById(id);
             })
             .filter(Boolean);

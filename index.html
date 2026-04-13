@@ -227,14 +227,16 @@
                 <header class="section-header reveal">
                     <p class="section-kicker">Technical foundation</p>
                     <h2 id="crypto-title" class="section-title">Modern cryptography, transparent guarantees</h2>
-                    <p class="section-lead">SecureShot uses industry-standard cryptography to protect content on device and move access safely between users — without turning the product into a jargon exercise.</p>
+                    <p class="section-lead">SecureShot uses industry-standard cryptography to protect content on device, structure encrypted files safely, and move access between users without exposing plaintext.</p>
                 </header>
                 <div class="reveal">
-                    <p class="section-lead" style="max-width: 760px; margin-bottom: 0;">Payloads use <strong style="color: var(--text-emphasis);">XChaCha20-Poly1305</strong>.<br>Passphrase and key derivation use <strong style="color: var(--text-emphasis);">Argon2id</strong>.<br>Secure sharing uses <strong style="color: var(--text-emphasis);">Curve25519</strong>.</p>
+                    <p class="section-lead" style="max-width: 760px; margin-bottom: 0;">XChaCha20-Poly1305 protects core encrypted payloads.<br>AES-GCM secures structured binary sections optimized for fast read and write.<br>Argon2id strengthens passphrase-based key derivation.<br>Curve25519 powers secure sharing and access transfer.<br>AAD-protected immutable components help make file tampering detectable.</p>
                     <div class="tech-row">
                         <span class="tech-chip"><span>AEAD</span> XChaCha20-Poly1305</span>
+                        <span class="tech-chip"><span>AEAD</span> AES-GCM</span>
                         <span class="tech-chip"><span>KDF</span> Argon2id</span>
                         <span class="tech-chip"><span>KX</span> Curve25519</span>
+                        <span class="tech-chip"><span>Integrity</span> AAD Binding</span>
                         <span class="tech-chip"><span>Format</span> .sshot</span>
                     </div>
                 </div>
