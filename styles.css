@@ -385,7 +385,7 @@ body {
     display: flex;
     align-items: center;
     --hero-pad-lead: var(--space-xxl);
-    --hero-pad-trail: calc(var(--hero-pad-lead) * 2);
+    --hero-pad-trail: var(--space-xxl);
 }
 
 /* 4 — glyph wave + vignette (behind everything in the hero) */
@@ -471,8 +471,8 @@ body {
     position: relative;
     z-index: 1;
     justify-self: end;
-    width: 100%;
-    max-width: 560px;
+    width: fit-content;
+    max-width: 100%;
     min-width: 0;
 }
 
@@ -483,7 +483,7 @@ body {
     justify-items: center;
     align-items: end;
     align-content: end;
-    width: 100%;
+    width: fit-content;
     min-width: 0;
 }
 
@@ -493,7 +493,7 @@ body {
     z-index: 0;
     display: none;
     min-width: 0;
-    width: min(48vw, 460px);
+    width: min(48vw, 420px);
     max-width: 100%;
     align-self: end;
     justify-self: center;
@@ -502,6 +502,14 @@ body {
     line-height: 0;
     pointer-events: none;
     user-select: none;
+}
+
+/* Show mock device only while hero is two-column (panel not stacked under stats).
+   When .hero-inner stacks to one column (max-width: 900px), hide — see that breakpoint. */
+@media (min-width: 901px) {
+    .hero-device {
+        display: block;
+    }
 }
 
 /* Top half of art (hide bottom 50%); box matches 390×(840×0.5) */
@@ -596,10 +604,6 @@ body {
         grid-template-rows: minmax(0, 1fr);
     }
 
-    .hero-device {
-        display: block;
-    }
-
     .hero-panel {
         max-width: min(400px, 108%);
         transform: translateY(clamp(-2rem, -14%, -0.75rem));
@@ -621,10 +625,6 @@ body {
         min-height: 0;
         position: relative;
         top: auto;
-    }
-
-    .hero-device {
-        display: none !important;
     }
 
     .hero-panel {
@@ -705,7 +705,8 @@ body {
     color: var(--text-emphasis);
 }
 
-.hero-title em {
+.hero-title em,
+.section-title em {
     font-style: normal;
     color: var(--brand-primary);
 }
@@ -842,6 +843,9 @@ body {
 }
 
 .flow-node {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: var(--space-xs) var(--space-sm);
     border-radius: var(--radius-compact);
     background: var(--bg-surface);
@@ -849,9 +853,11 @@ body {
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.01em;
-    line-height: 1.2;
+    line-height: 1.25;
     color: var(--text-primary);
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
     flex: 1 1 0;
     min-width: 0;
     text-align: center;
@@ -1009,6 +1015,10 @@ body {
     font-size: 1.0625rem;
     color: var(--text-secondary);
     line-height: 1.65;
+}
+
+.section-lead .sshot-badge {
+    vertical-align: middle;
 }
 
 .surface-muted {
